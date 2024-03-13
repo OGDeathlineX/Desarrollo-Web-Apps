@@ -1,28 +1,29 @@
 const fs = require('node:fs');
-const {Module} = require("module");
+const {Module} = require('module');
+const colors = require('colors');
 
-const crearArchivo = (base = 5) => {
-    return new Promise((resolve,reject) => {
+
+const crearArchivo = async(base = 5, limite = 15) =>
+{
+    return new Promise((resolve, reject) => {
         let salida = "";
-    
-        console.log("====================");
-        console.log(`Tabla del ${base}`);
-        console.log("====================");
-    
-        for (let i = 1; i <= 10; i++) {
-        salida += `${base} * ${i} = ${base * i}\n`;
-        }
-    
-    
+
+        console.log("======================".green);
+        console.log(`Tabla del ${base}`.green);
+        console.log("======================".green);
+
+        for (let i = 0; i <= limite; i++) 
+            salida += `${base}`.yellow+` *`.grey+` ${i}`.yellow+` =`.grey+` ${base * i}`.yellow+`\n`;
+
         fs.writeFile(`tabla-${base}.txt`, salida, (err) => {
-        if (err) reject(err);
-        resolve(`¡Archivo tabla-${base}.txt`);
-        });    
+            if (err) throw err;
+            resolve(`tabla-${base}.txt`);
+        }); 
+
         console.log(salida);
     });
-    
-};
+}  
 
 module.exports = {
     crearArchivo
-}
+};
