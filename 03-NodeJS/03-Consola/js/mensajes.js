@@ -25,7 +25,7 @@ const mostrarMenu = () => {
             readline.close();
             resolve(opc);
         });
-    });
+    });+
 
 };
 
