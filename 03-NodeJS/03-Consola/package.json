@@ -1,6 +1,6 @@
 {
   "name": "consola",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Consola interactiva con Nodejs",
   "main": "app.js",
   "scripts": {

@@ -70,7 +70,18 @@ class Tareas {
         if (this.listado[id]) {
             delete this.listado[id];
         }
-    }
+    };
+
+    cambiaTareas = (ids = []) => {
+        ids.forEach((id) => {
+            const tarea = this.listado[id];
+            if (tarea.completado) {
+                tarea.completado= new Date().toISOString();
+            } else{
+                tarea.completado= null;
+            }
+        });
+    };
 
 }
 

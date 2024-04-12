@@ -108,10 +108,28 @@ const confirm = async (message) => {
     return ok;
 };
 
+const listadoSeleccionar = async(listado) => {
+    const choices = listado.map((tarea) => {
+        return{
+            value: tarea.id,
+            name: tarea.descripción,
+            checked: (tarea.completado) ? false : true
+        }
+    });
+    const respuesta = await inquirer.prompt([{
+        type: 'checkbox',
+        name:'resp',
+        message: 'Seleccione las tareas completadas',
+        choices
+    }]);
+    return respuesta.resp;
+};
+
 module.exports = {
     inquirerMenu,
     pausa,
     capturaEntrada,
     listadoTareasBorrar,
-    confirm  
+    confirm,
+    listadoSeleccionar  
 };
