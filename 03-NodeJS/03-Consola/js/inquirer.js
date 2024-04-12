@@ -1,11 +1,12 @@
 const inquirer = require('inquirer');
 const colors = require ('colors');
+const { validate } = require('uuid');
 
 const menu = [
-    {
+    {   
         type: 'list',
         name: 'menuOpt',
-        message: 'Seleccione una opción',
+        message: 'Seleccione una opción: ',
         choices: [
             {
                 value: 1,
@@ -25,7 +26,7 @@ const menu = [
             },
             {
                 value: 5,
-                name: `5. Completar Tarea`
+                name: `5. Completar Tarea.`
             },
             {
                 value: 6,
@@ -39,46 +40,78 @@ const menu = [
     }
 ];
 
-const inquirerMenu = async() => {
-    // console.clear();
-        console.log("====================".green);
-        console.log("Seleccione una opción".green);
-        console.log("====================".green);
+const inquirerMenu = async () => {
+        //console.clear();
+        console.log("======================".green);
+        console.log(" Seleccione una opción".green);
+        console.log("======================".green);
         console.log("");
 
-        const {menuOpt} = await inquirer.prompt(menu);
+        const { menuOpt } = await inquirer.prompt(menu); 
         return menuOpt;
-
 };
 
 const pausa = async () => {
-    await inquirer.prompt([
-    {
+    await inquirer.prompt([{
         type: 'input',
         name: 'pauseOpt',
-        message: `Presiona ${"Enter".red} para continuar`
-        
-    }
-]);
-}
+        message: `Presione ${'Enter'.red} para continuar...`
+    }]);
+};
 
-const capturaEntrada = async(message) => {
+const capturaEntrada = async (message) =>{
     respuesta = await inquirer.prompt([{
         type: 'input',
-        name:resp,
+        name: 'resp',
         message,
-        validate: (entada) => {
-            if (capturaEntrada.length === 0) {
-                return 'Entraada invalida, Reintente';
+        validate: (entrada) => {
+            if (entrada.length === 0) {
+                return 'Entrada inválida. Reintente'
             } else {
-                return true();
+                return true;
             }
         }
-    }])
+    }]);
+    return respuesta.resp;
+};
+
+const listadoTareasBorrar = async (listaTareas = []) => {
+    let cont = 0;
+    const choices = listaTareas.map( (tarea) => {
+        cont++;
+        return {
+            value: tarea.id,
+            name: `${cont.toString().green}. ${tarea.descripción.white}`
+        }
+    } );
+
+    choices.unshift({
+        value: 0,
+        name: `${'0'.green}. ${'Cancelar'.yellow}`
+    });
+
+    const respuesta = await inquirer.prompt([{
+        type: 'list',
+        name: 'resp',
+        message: "¿Que tarea desea borrar?",
+        choices
+    }]);
+    return respuesta.resp;
+};
+
+const confirm = async (message) => {
+    const { ok } = await inquirer.prompt([{
+        type: 'confirm',
+        name: 'ok',
+        message
+    }]);
+    return ok;
 };
 
 module.exports = {
     inquirerMenu,
     pausa,
-    capturaEntrada
-}
+    capturaEntrada,
+    listadoTareasBorrar,
+    confirm  
+};

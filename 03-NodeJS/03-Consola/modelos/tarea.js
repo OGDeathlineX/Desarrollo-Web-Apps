@@ -1,11 +1,11 @@
-const { v4: uuidv4} = require ('uuid');
+const { v4: uuidv4 } = require('uuid');
 
-class Tarea{
-    id = '';
+class Tarea {
+    id = "";
     descripción = "";
     completado = null;
 
-    constructor(desc){
+    constructor(desc) {
         this.id = uuidv4();
         this.descripción = desc;
         this.completado = null;

@@ -1,7 +1,7 @@
 {
-  "name": "consola_interactiva",
+  "name": "consola",
   "version": "0.1.0",
-  "description": "Consola interactiva con NodeJs",
+  "description": "Consola interactiva con Nodejs",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -10,7 +10,7 @@
     "javascript",
     "node"
   ],
-  "author": "Mauricio Solano Nájera",
+  "author": "Roberto Salazar Márquez",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
