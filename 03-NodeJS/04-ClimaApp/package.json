@@ -1,23 +1,21 @@
 {
-  "name": "consola",
-  "version": "1.0.0",
-  "description": "Consola interactiva con Nodejs",
+  "name": "04-climaapp",
+  "version": "0.1.0",
+  "description": "Aplicaci+on de Geoposicionamiento y Clima",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "node",
+    "app",
     "javascript",
-    "node"
+    "rest"
   ],
   "author": "Mauricio Solano Nájera",
   "license": "ISC",
   "dependencies": {
     "colors": "^1.4.0",
-    "inquirer": "^8.0.0",
-    "uuid": "^9.0.1"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.0"
+    "inquirer": "^8.0.0"
   }
 }
