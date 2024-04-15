@@ -8,7 +8,9 @@ const main = async() => {
     do{
         resp = await inquirerMenu();
         switch (resp) {
-            case 1: break;
+            case 1: const lugar = await capturaEntrada("Ciudad: ");
+                busqueda.ciudad(lugar);
+                break;
             case 2: break;
 
         }
