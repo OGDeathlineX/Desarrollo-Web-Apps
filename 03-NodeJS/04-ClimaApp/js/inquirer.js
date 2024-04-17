@@ -58,13 +58,15 @@ const capturaEntrada = async (message) =>{
     return respuesta.resp;
 };
 
-const listadoTareasBorrar = async (listaTareas = []) => {
+const listadoCiudades = async (listado = []) => {
     let cont = 0;
-    const choices = listaTareas.map( (tarea) => {
+    const choices = listado.map( (ciudad) => {
         cont++;
         return {
-            value: tarea.id,
-            name: `${cont.toString().green}. ${tarea.descripción.white}`
+            value: ciudad.id,
+            name: `${cont.toString().green}. ${ciudad.lugar.white}`,
+            lat: ciudad.lat,
+            lon: ciudad.lon
         }
     } );
 
@@ -76,7 +78,7 @@ const listadoTareasBorrar = async (listaTareas = []) => {
     const respuesta = await inquirer.prompt([{
         type: 'list',
         name: 'resp',
-        message: "¿Que tarea desea borrar?",
+        message: "Seleccione una ciudad",
         choices
     }]);
     return respuesta.resp;
@@ -112,7 +114,7 @@ module.exports = {
     inquirerMenu,
     pausa,
     capturaEntrada,
-    listadoTareasBorrar,
+    listadoCiudades,
     confirm,
     listadoSeleccionar  
 };

@@ -1,6 +1,6 @@
 {
   "name": "04-climaapp",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Aplicaci+on de Geoposicionamiento y Clima",
   "main": "app.js",
   "scripts": {

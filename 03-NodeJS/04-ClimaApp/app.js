@@ -1,5 +1,5 @@
 const color = require('colors');
-const {inquirerMenu, capturaEntrada,pausa} = require('./js/inquirer');
+const {inquirerMenu, capturaEntrada,pausa, listadoCiudades} = require('./js/inquirer');
 const Busqueda = require('./modelos/busquedas');
 
 const main = async() => {
@@ -9,7 +9,12 @@ const main = async() => {
         resp = await inquirerMenu();
         switch (resp) {
             case 1: const lugar = await capturaEntrada("Ciudad: ");
-                busqueda.ciudad(lugar);
+                const lugares = await busqueda.ciudad(lugar);
+                const id = await listadoCiudades(lugares);
+                const lugarSeleccionado = lugares.find(ciudad => ciudad.id === id)
+                console.log(`${'Ciudad: '.yellow}: ${lugarSeleccionado.lugar}`);
+                console.log(`${'Latitud: '.yellow}: ${lugarSeleccionado.lat}`);
+                console.log(`${'Longitud: '.yellow}: ${lugarSeleccionado.lon}`);
                 break;
             case 2: break;
 
