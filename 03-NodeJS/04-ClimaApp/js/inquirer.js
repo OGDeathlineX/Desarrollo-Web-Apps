@@ -24,7 +24,7 @@ const menu = [
 ];
 
 const inquirerMenu = async () => {
-        //console.clear();
+        console.clear();
         console.log("======================".green);
         console.log(" Seleccione una opción".green);
         console.log("======================".green);
@@ -78,7 +78,7 @@ const listadoCiudades = async (listado = []) => {
     const respuesta = await inquirer.prompt([{
         type: 'list',
         name: 'resp',
-        message: "Seleccione una ciudad",
+        message: "Seleccione una ciudad: ",
         choices
     }]);
     return respuesta.resp;
@@ -93,9 +93,9 @@ const confirm = async (message) => {
     return ok;
 };
 
-const listadoSeleccionar = async(listado) => {
-    const choices = listado.map((tarea) => {
-        return{
+const listadoSeleccionar = async (listado) => {
+    const choices = listado.map( (tarea) => {
+        return {
             value: tarea.id,
             name: tarea.descripción,
             checked: (tarea.completado) ? false : true
@@ -103,12 +103,13 @@ const listadoSeleccionar = async(listado) => {
     });
     const respuesta = await inquirer.prompt([{
         type: 'checkbox',
-        name:'resp',
-        message: 'Seleccione las tareas completadas',
+        name: 'resp',
+        message: 'Marque las tareas completadas',
         choices
     }]);
     return respuesta.resp;
 };
+
 
 module.exports = {
     inquirerMenu,
