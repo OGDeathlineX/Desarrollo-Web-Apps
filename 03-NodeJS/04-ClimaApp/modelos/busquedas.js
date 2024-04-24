@@ -50,7 +50,11 @@ class Busquedas {
     }
 
     guardarBusquedas = (lugar = '') => {
+        if (this.historial.includes(lugar)) {
+            return;
+        }
         this.historial.unshift(lugar);
+        this.historial = this.historial.slice(0,5);
     };
 
     guardaBase = () => {
@@ -66,7 +70,14 @@ class Busquedas {
         }
     };
     
-    cargaBase = () => {}
+    cargaBase = () => {
+        if (!fs.existsSync(this.dbPath)){
+            return null;
+        }
+        const consultas = fs.readFileSync(this.dbPath,{encoding: "utf-8"});
+        const hist = JSON.parse(consultas);
+        this.historial = hist.historial;
+    };
 }
 
 module.exports = Busquedas;

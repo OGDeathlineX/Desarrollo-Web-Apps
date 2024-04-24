@@ -6,6 +6,7 @@ const Busqueda = require('./modelos/busquedas');
 const main = async () => {
     let resp;
     const busqueda = new Busqueda();
+    busqueda.cargaBase();
     do {
         resp = await inquirerMenu();
         switch (resp) {
@@ -29,7 +30,14 @@ const main = async () => {
                     console.log(`${'Temperatura Máxima: '.yellow}: ${clima.max} centigrados`);
                     await pausa();
                     break;
-            case 2: break;
+            case 2: 
+                let cont = 1;
+                busqueda.historial.forEach((lugar) => {
+                    console.log(`${cont.toString().green}.${lugar}`);
+                    cont++;
+                });
+                await pausa();
+                break;
         }
         busqueda.guardaBase();
         if (resp === 0) {
