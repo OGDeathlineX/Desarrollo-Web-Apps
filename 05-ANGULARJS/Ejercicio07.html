@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en"  ng-app="">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="js/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <title>AngularJS 1.0</title>
+</head>
+<body  ng-app="" ng-init="resultados = [{nombre:'Juan', Calif:9}, {nombre: 'Raul', calif:6',}, {nombre: 'Esteban', calif 10'}']">
+    <h2>Filtro Orderby</h2>
+    <tr>
+        <th>Nombre de estudiante</th>
+        <th>Calificaciones</th>
+    </tr>
+    <tr ng-repeat="x in resultados | Orderby: 'calif">
+        <td ng-bind="x.nombre"></td>
+        <td ng-bind="x.calif">
+
+    </tr>
+</body>
+</html>
